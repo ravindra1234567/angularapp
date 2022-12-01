@@ -1,0 +1,41 @@
+<div class="bootstrap-wrappper">
+    <div class="container-fluid">
+        <mat-icon style="font-size: 50px;" class="mt20" (click)="goBack()">arrow_back</mat-icon>
+        <div class="row mt20" *ngIf="products">
+            <div class="col-md-4">
+                <h1 class="mt20">Product</h1>
+                <mat-card class="mb20">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{products.name}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <b>Brand </b> {{products.brand}}
+                        </mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <b>Product Code </b> {{products.productCode}}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>{{products.content}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
+                <h1 class="mt20">Comments</h1>
+                <app-admin-view-comment *ngIf="userType === 'ADMIN' "></app-admin-view-comment>
+                <app-view-comment  *ngIf="userType === 'NORMAL' " ></app-view-comment>
+            </div>
+            <div class="col-md-12" *ngIf="products.length==0">
+                <mat-card>
+                    <mat-card-content>
+                        <h1>No data in this product</h1>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {{products | json}} -->

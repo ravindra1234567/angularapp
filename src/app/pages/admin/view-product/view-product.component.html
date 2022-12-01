@@ -1,0 +1,51 @@
+<div class="bootstrap-wrappper">
+    <div class="container-fluid">
+        <h1 class="mt20">Available Products</h1>
+        <!-- Search form -->
+            <mat-form-field class="w100">
+                <mat-label>Search Product Here</mat-label>
+                <input  type="search" name="name" 
+                placeholder="Search here"
+                [(ngModel)] = "nameSearch"
+                    matInput>
+            </mat-form-field>
+
+        <div class="row mt20" *ngIf="products">
+            <div class="col-md-4" *ngFor="let q of products | filter:nameSearch">
+                <mat-card class="mb20">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{q.name}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                           <b>Brand </b> {{q.brand}}
+                        </mat-card-subtitle>
+                        <mat-card-subtitle>
+                            <b>Product Code </b> {{q.productCode}}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p class="truncate">{{q.content}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="accent" [routerLink]="['/admin/view-single-product/',q.pid]">View</button>
+                        <button mat-raised-button color="accent" [routerLink]="['/admin/edit-product/', q.pid]" >Edit</button>
+                        <button mat-raised-button color="warn" (click)="deleteProduct(q.pid)">Delete</button>
+                        <!-- active field -->
+                        <mat-slide-toggle name="status" [(ngModel)]="q.status" (click)="approved(q.pid,q.content,q.brand,q.status,q.productCode,q.name)">
+                        </mat-slide-toggle>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-md-12" *ngIf="products.length==0">
+                <mat-card>
+                    <mat-card-content>
+                        <h1>No data in this category</h1>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- {{products | json}} -->

@@ -1,0 +1,11 @@
+<!-- {{comments | json}} -->
+<div *ngFor="let c of comments">
+    <mat-card class="mb10">
+        {{c.message}}
+        <b class="rightSide"  style="margin-bottom: 30px;">
+            <!-- active field -->
+            <mat-slide-toggle name="status" [(ngModel)]="c.status" (click)="approved(c.status,c.cid,c.message,c.pid,c.user.id)">
+            </mat-slide-toggle>
+        </b>
+    </mat-card>
+</div>

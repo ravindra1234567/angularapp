@@ -1,0 +1,16 @@
+<div *ngFor="let c of comments">
+    <mat-card class="mb10">
+        {{c.message}}
+        <b *ngIf="c.status" class="rightSide" >Approved By Admin</b>
+        <br />
+        <span>{{c.user.firstName}} {{c.user.lastName}}</span>
+        <span class="rightSide">{{c.created_at}}</span>
+    </mat-card>
+</div>
+<div class="col-md-12" *ngIf="!comments">
+    <mat-card>
+        <mat-card-content>
+            <h1>No comment in this product</h1>
+        </mat-card-content>
+    </mat-card>
+</div>
